@@ -27,12 +27,8 @@ fn generate_hash(characters: [char; 70], salt: String, salt_length: u8 ,plain_te
     }
     println!("{:?}", char_list);
     let hash: String = char_list.iter().collect();
-    if salt_length < 1 {
-        return hash;
-    } else {
-        let full_hash: String = salt + hash.as_str();
-        return full_hash;
-    }
+    let full_hash = salt + hash.as_str();
+    return full_hash;
 }
 
 fn main() {
@@ -54,7 +50,7 @@ fn main() {
         }).clone();
 
         let salt_length: u8 = salt_length.parse().expect("Failed to convert to u8");
-        let hash_number: u8 = hash_number.parse().expect("Failled to convert to u8");
+        let hash_number: u8 = hash_number.parse().expect("Failed to convert to u8");
         let plain_text_length: u8 = plain_text.len() as u8;
 
         let salt = generate_salt::salt_generate(salt_length);
